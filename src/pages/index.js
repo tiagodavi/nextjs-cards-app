@@ -39,10 +39,10 @@ const CardsScreen = (props) => (
 
     <div className={styles.row}>
       {props.cards.map((card) => (
-        <div key={card.key} className={styles.column}>
+        <div key={card.id} className={styles.column}>
           <div className={styles.card}>
             <p>
-              <b>ID:</b> {card.id}
+              <b>Pontos:</b> {card.points}
             </p>
             <h4>
               <b>Nome:</b> {card.name}
@@ -94,11 +94,11 @@ const IndexPage = () => {
         .sort(() => Math.random() - 0.5)
         .map((a) => {
           return {
-            key: parseInt(a.key) + 1,
-            id: a.id,
+            id: parseInt(a.id) + 1,
             name: a.name,
             image: a.image,
             description: a.description,
+            points: a.points,
           }
         }),
     )

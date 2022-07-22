@@ -15,14 +15,18 @@ function fetchAnimals(number) {
     .then((res) =>
       res.map((animal) => {
         return {
-          key: animal.id,
           id: animal.id,
           name: animal.name,
-          description: animal.animal_type,
           image: animal.image_link,
+          description: animal.animal_type,
+          points: randomIntFromInterval(0, 10),
         }
       }),
     )
+}
+
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 const CardsAPI = (req, res) => {
