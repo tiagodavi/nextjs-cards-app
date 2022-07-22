@@ -25,6 +25,7 @@ function fetchAnimals(number) {
   .then(resp => resp.json())
   .then(res => res.map(animal => {
     return {
+      key: animal.id,
       id: animal.id,
       name: animal.name,
       description: animal.animal_type,

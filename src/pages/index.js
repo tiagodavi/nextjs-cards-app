@@ -22,7 +22,7 @@ const CardsScreen = (props) => (
 
     <div className={styles.row}>
       {props.cards.map((card) => (
-        <div key={card.id} className={styles.column}>
+        <div key={card.key} className={styles.column}>
           <div className={styles.card}>
             <p><b>ID:</b> {card.id}</p>
             <h4><b>Nome:</b> {card.name}</h4>
@@ -65,13 +65,16 @@ export default () => {
    }
   }
 
-  const shuffleCards = (e) => {
-    setCards((animals) => {
-      return animals
-      .map(value => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value)
-    });
+  const shuffleCards = (e) => {    
+    setCards((animals) => animals.sort(() => Math.random() - 0.5).map((a) => {
+      return {
+        key: parseInt(a.key) + 1,
+        id: a.id,
+        name: a.name,
+        image: a.image,
+        description: a.description
+      }
+    }));
    }
 
    const fetchNewCard = async(e) => {
