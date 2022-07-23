@@ -1,11 +1,10 @@
-function post(req, res) {
+async function post(req, res) {
   const body = JSON.parse(req.body)
+  const animals = await fetchAnimals(body.number)
 
-  fetchAnimals(body.number).then((animals) => {
-    res.status(200).json({
-      name: body.name,
-      animals: animals,
-    })
+  res.status(200).json({
+    name: body.name,
+    animals: animals,
   })
 }
 
@@ -29,9 +28,9 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-const CardsAPI = (req, res) => {
+const CardsAPI = async (req, res) => {
   if (req.method === 'POST') {
-    post(req, res)
+    await post(req, res)
   } else {
     res.status(405).send()
   }
